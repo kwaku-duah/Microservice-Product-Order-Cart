@@ -6,6 +6,7 @@ import com.ecommerce.productservice.entity.Product;
 import com.ecommerce.productservice.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -13,6 +14,7 @@ public class ProductServiceImpl implements  ProductService {
 
     private final ProductRepository productRepository;
 
+    @Transactional
     @Override
     public ProductResponseDto createProduct(ProductRequestDto productRequestDto) {
       /*
@@ -33,4 +35,25 @@ public class ProductServiceImpl implements  ProductService {
                 .productQuantity(saved.getProductQuantity())
                 .build();
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public ProductResponseDto findByProductId(Long productId) {
+        Product product = productRepository.findByProductId(productId)
+                .orElseThrow(() -> new )
+    }
+
+    @Override
+    public void reduceQuantity(Long productId, Long productQuantity) {
+
+    }
+
+    @Override
+    public void deleteByProductId(Long productId) {
+
+    }
+
+    //could reduce this by using a mapper to simplify activities
+
+
 }
