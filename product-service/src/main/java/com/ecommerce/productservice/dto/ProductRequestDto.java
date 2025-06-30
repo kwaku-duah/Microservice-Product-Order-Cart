@@ -1,5 +1,6 @@
 package com.ecommerce.productservice.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 /*
 I can omit setters here if I am planning immutability
@@ -11,7 +12,10 @@ I can omit setters here if I am planning immutability
 @AllArgsConstructor
 @Builder
 public class ProductRequestDto {
+    @NotBlank
     private String productName;
+    @NotBlank
     private Double productPrice;
+    @NotBlank
     private Long productQuantity;
 }
