@@ -11,12 +11,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleException(ResourceNotFoundException ex) {
-       ErrorResponse errorResponse = new ErrorResponse(
-               ex.getStatus(),
-               ex.getStatusCode(),
-               ex.getMessage()
-       );
-               return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+      return ResponseEntity
+              .status(HttpStatus.NOT_FOUND)
+              .body(new ErrorResponse(ex.getStatus(), ex.getStatusCode(),ex.getMessage()));
     }
 
     @ExceptionHandler(InsufficientResourceException.class)
