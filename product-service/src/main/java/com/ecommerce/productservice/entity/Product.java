@@ -1,17 +1,15 @@
 package com.ecommerce.productservice.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 @Entity
 @Table(name = "product")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 public class Product {
 
     @Id
