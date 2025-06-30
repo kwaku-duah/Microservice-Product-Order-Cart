@@ -12,6 +12,6 @@ I can omit setters here if I am planning immutability
 @Builder
 public class ProductRequestDto {
     private String productName;
-    private Long productPrice;
+    private Double productPrice;
     private Long productQuantity;
 }
