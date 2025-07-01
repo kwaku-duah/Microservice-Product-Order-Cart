@@ -1,4 +1,4 @@
-package com.ecommerce.orderservice.entity;
+package com.ecommerce.paymentservice.entity;
 
 
 import lombok.AllArgsConstructor;

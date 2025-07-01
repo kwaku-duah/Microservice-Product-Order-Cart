@@ -14,8 +14,6 @@ I can omit setters here if I am planning immutability
 public class ProductRequestDto {
     @NotBlank
     private String productName;
-    @NotBlank
     private Double productPrice;
-    @NotBlank
     private Long productQuantity;
 }

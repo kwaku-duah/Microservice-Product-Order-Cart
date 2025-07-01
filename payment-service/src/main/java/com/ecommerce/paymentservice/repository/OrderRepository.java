@@ -1,6 +1,6 @@
-package com.ecommerce.orderservice.repository;
+package com.ecommerce.paymentservice.repository;
 
-import com.ecommerce.orderservice.entity.TransactionDetails;
+import com.ecommerce.paymentservice.entity.TransactionDetails;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

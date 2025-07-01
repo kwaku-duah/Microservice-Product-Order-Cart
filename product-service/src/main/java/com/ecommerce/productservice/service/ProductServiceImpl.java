@@ -43,7 +43,7 @@ public class ProductServiceImpl implements  ProductService {
     @Override
     public ProductResponseDto findByProductId(Long productId) {
         Product product = productRepository.findByProductId(productId)
-                .orElseThrow(() -> new ResourceNotFoundException(404,"PRODUCT NOT_FOUND","Product with ID not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(HttpStatus.NOT_FOUND.value(), "PRODUCT_NOT_FOUND", "Product with ID " + productId + " does not exist"));
 
         return ProductResponseDto.builder()
                 .productId(product.getProductId())
@@ -57,7 +57,7 @@ public class ProductServiceImpl implements  ProductService {
     @Override
     public void reduceQuantity(Long productId, Long productQuantity) {
         Product product = productRepository.findByProductId(productId)
-                .orElseThrow(() -> new ResourceNotFoundException(HttpStatus.BAD_REQUEST.value(), "PRODUCT NOT_FOUND","Product with ID" + productId + " does not exist"));
+                .orElseThrow(() -> new ResourceNotFoundException(HttpStatus.BAD_REQUEST.value(), "PRODUCT NOT_FOUND","Product with ID " + productId + " does not exist"));
 
         if (product.getProductQuantity() < productQuantity) {
             throw  new InsufficientResourceException(HttpStatus.NOT_FOUND.value(), "PRODUCT_QUANTITY_ERROR", "Requested quantity " + productQuantity + " exceeds available stock");
@@ -72,7 +72,7 @@ public class ProductServiceImpl implements  ProductService {
     public void deleteByProductId(Long productId) {
        boolean exists = productRepository.existsById(productId);
        if (!exists) {
-           throw new ResourceNotFoundException(HttpStatus.NOT_FOUND.value(), "PRODUCT_NOT_FOUND", "Product with ID" + productId + "does not exist");
+           throw new ResourceNotFoundException(HttpStatus.NOT_FOUND.value(), "PRODUCT_NOT_FOUND", "Product with ID " + productId + " does not exist");
        }
        productRepository.deleteByProductId(productId);
     }
