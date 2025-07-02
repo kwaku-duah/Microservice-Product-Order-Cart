@@ -21,7 +21,7 @@ public class TransactionDetails {
 
     @Id
     private String id; //mongo auto generates Object id stored as a string
-    private Long orderId;
+    private String orderId;
     private String paymentMode;
     private String referenceNumber;
     private Instant paymentDate;

@@ -23,7 +23,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Transactional
     @Override
-    public Long doPayment(PaymentRequestDto paymentRequestDto) {
+    public String doPayment(PaymentRequestDto paymentRequestDto) {
         TransactionDetails transact = TransactionDetails.builder()
                 .paymentDate(Instant.now())
                 .orderId(paymentRequestDto.getOrderId())
@@ -42,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Cacheable(value="payments", key="#orderId")
     @Transactional(readOnly = true)
     @Override
-    public PaymentResponseDto paymentDetailsByOrderId(Long orderId) {
+    public PaymentResponseDto paymentDetailsByOrderId(String orderId) {
         TransactionDetails transaction = paymentRepository.findByOrderId(orderId)
                 .orElseThrow(() -> new PaymentCustomException("Order Id " + orderId + " not found", HttpStatus.NOT_FOUND.value(),"ORDER_ID_NOT_FOUND"));
 

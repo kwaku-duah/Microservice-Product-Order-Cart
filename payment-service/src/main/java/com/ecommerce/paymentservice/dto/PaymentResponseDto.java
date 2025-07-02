@@ -16,6 +16,6 @@ public class PaymentResponseDto {
     private PaymentMode paymentMode;
     private Double amount;
     private Instant paymentDate;
-    private Long orderId;
+    private String orderId;
 
 }

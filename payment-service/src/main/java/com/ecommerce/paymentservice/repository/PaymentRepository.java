@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface PaymentRepository extends MongoRepository<TransactionDetails, String> {
-    Optional<TransactionDetails> findByOrderId(Long orderId);
+    Optional<TransactionDetails> findByOrderId(String orderId);
 }
 

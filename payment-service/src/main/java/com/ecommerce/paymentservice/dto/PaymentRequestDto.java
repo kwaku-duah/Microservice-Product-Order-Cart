@@ -12,7 +12,7 @@ import lombok.*;
 public class PaymentRequestDto {
 
     @NotNull(message = "Order Id has no verification")
-    private Long orderId;
+    private String orderId;
 
     @NotNull(message = "Enter the double amount")
     private Double amount;
