@@ -13,7 +13,6 @@ import java.time.Instant;
 @Builder
 public class PaymentResponseDto {
     private Long paymentId;
-    private String status;
     private PaymentMode paymentMode;
     private Double amount;
     private Instant paymentDate;

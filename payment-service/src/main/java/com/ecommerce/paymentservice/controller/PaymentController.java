@@ -1,16 +1,14 @@
 package com.ecommerce.paymentservice.controller;
 
 import com.ecommerce.paymentservice.dto.PaymentRequestDto;
+import com.ecommerce.paymentservice.dto.PaymentResponseDto;
 import com.ecommerce.paymentservice.payload.ApiResponse;
 import com.ecommerce.paymentservice.service.PaymentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,5 +22,11 @@ public class PaymentController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ApiResponse(true, "Payment successful"));
+    }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<PaymentResponseDto> getPaymentDetails(@PathVariable Long orderId) {
+        paymentService.paymentDetailsByOrderId(orderId);
+        return ResponseEntity.ok(new PaymentResponseDto());
     }
 }
