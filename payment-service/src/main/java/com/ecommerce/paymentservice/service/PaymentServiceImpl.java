@@ -8,12 +8,14 @@ import com.ecommerce.paymentservice.entity.TransactionDetails;
 import com.ecommerce.paymentservice.exception.PaymentCustomException;
 import com.ecommerce.paymentservice.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -22,10 +24,11 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
 
     @Transactional
+    @CachePut(value = "payments", key="#paymentRequestDto.getOrderId")
     @Override
-    public String doPayment(PaymentRequestDto paymentRequestDto) {
+    public PaymentResponseDto doPayment(PaymentRequestDto paymentRequestDto) {
         TransactionDetails transact = TransactionDetails.builder()
-                .paymentDate(Instant.now())
+                .paymentDate(new Date())
                 .orderId(paymentRequestDto.getOrderId())
                 .paymentMode(paymentRequestDto.getPaymentMode().name())
                 .referenceNumber(paymentRequestDto.getReferenceNumber())
@@ -33,7 +36,12 @@ public class PaymentServiceImpl implements PaymentService {
                 .build();
        transact = paymentRepository.save(transact);
 
-       return  transact.getOrderId();
+       return  PaymentResponseDto.builder()
+               .orderId(transact.getOrderId())
+               .paymentDate(transact.getPaymentDate())
+               .paymentMode(PaymentMode.valueOf(transact.getPaymentMode()))
+               .amount(transact.getAmount())
+               .build();
 
 
 

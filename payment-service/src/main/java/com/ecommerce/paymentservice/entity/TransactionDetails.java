@@ -24,7 +24,7 @@ public class TransactionDetails {
     private String orderId;
     private String paymentMode;
     private String referenceNumber;
-    private Instant paymentDate;
+    private java.util.Date paymentDate;
     private Double amount;
 
 

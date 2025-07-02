@@ -17,11 +17,8 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping
-    public ResponseEntity<ApiResponse> pay(@RequestBody @Valid PaymentRequestDto paymentRequestDto) {
-        paymentService.doPayment(paymentRequestDto);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(new ApiResponse(true, "Payment successful"));
+    public ResponseEntity<PaymentResponseDto> pay(@RequestBody @Valid PaymentRequestDto paymentRequestDto) {
+       return  ResponseEntity.ok(paymentService.doPayment(paymentRequestDto));
     }
 
     @GetMapping("/{orderId}")

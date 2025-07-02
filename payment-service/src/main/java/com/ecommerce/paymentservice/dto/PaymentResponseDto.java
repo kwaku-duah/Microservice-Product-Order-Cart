@@ -15,7 +15,7 @@ public class PaymentResponseDto {
     private Long paymentId;
     private PaymentMode paymentMode;
     private Double amount;
-    private Instant paymentDate;
+    private java.util.Date paymentDate;
     private String orderId;
 
 }

@@ -4,6 +4,6 @@ import com.ecommerce.paymentservice.dto.PaymentRequestDto;
 import com.ecommerce.paymentservice.dto.PaymentResponseDto;
 
 public interface PaymentService {
-    String doPayment(PaymentRequestDto paymentRequestDto);
+    PaymentResponseDto doPayment(PaymentRequestDto paymentRequestDto);
     PaymentResponseDto paymentDetailsByOrderId(String orderId);
 }
