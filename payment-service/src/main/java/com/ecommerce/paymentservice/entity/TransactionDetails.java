@@ -1,10 +1,7 @@
 package com.ecommerce.paymentservice.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,6 +16,7 @@ very simple and effective
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class TransactionDetails {
 
     @Id
@@ -27,7 +25,6 @@ public class TransactionDetails {
     private String paymentMode;
     private String referenceNumber;
     private Instant paymentDate;
-    private String paymentStatus;
     private Double amount;
 
 
